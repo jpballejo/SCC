@@ -1,0 +1,8 @@
+{
+  "name": "node-ejemplo",
+  "description": "Ejemplo LED RBG Johnny-Five",
+  "author": "JP",
+  "version": "0.1.0",
+  "dependencies": {
+	}
+}

@@ -1,0 +1,56 @@
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<style>
+.btn{
+width: 200px;
+padding: 15px 32px;
+text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="container theme-showcase" role="main">
+<div class="jumbotron">
+<h2>Firmata prueba</h1>
+</div>
+<div class="row">
+<div class="col-md-3 col-md-offset-3">
+<p> <button id="b_on" type="button" class="btn btn-lg btn-primary">Encender</button>
+<p> <button id="b_off" type="button" class="btn btn-lg btn-success">Apagar</button>
+<p> <button id="b_hum" type="button" class="btn btn-lg btn-success">Humedad</button> <div id="val_humeda"></div>
+
+</div>
+</div>
+</div>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script>
+var socket = io("http://localhost:8081");
+var valor=0;
+function encender(){
+socket.emit('e');
+}
+function apagar(){
+socket.emit('a');
+}
+function humedad(){
+	socket.emit('Humedad')
+}
+
+var val_humeda = document.getElementById('val_humeda')
+
+socket.on('Humedad',function(data){
+	val_humeda.innerHTML=Math.floor(data)
+})
+
+
+
+document.getElementById('b_off').onclick = apagar;
+document.getElementById('b_on').onclick = encender;
+document.getElementById('b_hum').onclick = humedad;
+
+</script>
+</body>
+</html>
