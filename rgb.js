@@ -24,19 +24,30 @@ arduino.on("ready", () => {
 //arduino.pinMode(, arduino.MODES.INPUT);
 
    	var humedad = 0;
+   	var temp = 0;
 
 	arduino.analogRead(0,function(valor){
 				var resul = (valor*100)/1023;
 				console.log("Humedad: "+resul+"%");
 				humedad = resul
 			});
-	
+
+	arduino.analogRead(1,function(valor){
+				var resul = (valor/1023.0)*5000;
+				console.log("Temperatura ambiente: "+resul+"%");
+				temp = resul / 10;
+			});
+
     io.on('connection', function (socket) {
 		console.log("Socket conectado");
 		socket.on('Humedad',function(){
 			socket.emit('Humedad',humedad);
 		});
-					
+		
+		socket.on('Temperatura',function(){
+			socket.emit('Temperatura',temp);
+		});
+
 		socket.on('e', function (){
 			console.log("Encendido");
 	        arduino.digitalWrite(pin, 1);

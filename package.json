@@ -1,8 +1,27 @@
 {
-  "name": "node-ejemplo",
-  "description": "Ejemplo LED RBG Johnny-Five",
-  "author": "JP",
-  "version": "0.1.0",
+  "name": "coso",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rgb.js",
   "dependencies": {
-	}
+    "arduino-firmata": "^0.3.4",
+    "firmata": "^0.17.0",
+    "serialport": "^5.0.0",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpballejo/SCC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpballejo/SCC/issues"
+  },
+  "homepage": "https://github.com/jpballejo/SCC#readme"
 }

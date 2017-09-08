@@ -20,6 +20,7 @@ text-align: center;
 <p> <button id="b_on" type="button" class="btn btn-lg btn-primary">Encender</button>
 <p> <button id="b_off" type="button" class="btn btn-lg btn-success">Apagar</button>
 <p> <button id="b_hum" type="button" class="btn btn-lg btn-success">Humedad</button> <div id="val_humeda"></div>
+<p> <button id="b_temp" type="button" class="btn btn-lg btn-success">Temperatura</button> <div id="val_temp"></div>
 
 </div>
 </div>
@@ -38,18 +39,25 @@ socket.emit('a');
 function humedad(){
 	socket.emit('Humedad')
 }
-
+function temperatura(){
+	socket.emit('Temperatura')
+}
 var val_humeda = document.getElementById('val_humeda')
+
+var val_temp = document.getElementById('val_temp')
 
 socket.on('Humedad',function(data){
 	val_humeda.innerHTML=Math.floor(data)
 })
 
-
+socket.on('Temperatura',function(data){
+	val_temp.innerHTML=Math.floor(data)
+})
 
 document.getElementById('b_off').onclick = apagar;
 document.getElementById('b_on').onclick = encender;
 document.getElementById('b_hum').onclick = humedad;
+document.getElementById('b_temp').onclick = temperatura;
 
 </script>
 </body>
